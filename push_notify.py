@@ -34,10 +34,10 @@ def notify():
     # And start loop for check price
     while True:
         # Wait for 3 minutes and go on
-        sleep(20)
+        sleep(180)
         p, status = price.get_current_price()
         if status:
-            if float(p) < float(current_price) - 1:
+            if float(p) < float(current_price) - 100:
                 # Play fragment from song 
                 # "Heart Of A Coward - Shade" or from another
                 # and show painfull pop-up notification.
@@ -46,7 +46,7 @@ def notify():
                     mes=f'BTC fell down to {p}$ from {current_price}$'
                 )
                 current_price = p
-            elif float(p) > float(current_price) + 1:
+            elif float(p) > float(current_price) + 100:
                 # Play fragment from song 
                 # "The Tokens - The Lion Sleeps Tonight" or from another
                 # and show cheer pop-up notification.
@@ -55,8 +55,6 @@ def notify():
                     mes=f'BTC took off to {p}$ from {current_price}$'
                 )
                 current_price = p
-            else:
-                print(p)
         else:
             play_and_popup(mes=ERROR_MESSAGE)
 
